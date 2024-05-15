@@ -1,53 +1,48 @@
 #include <Servo.h>
 
-Servo servol;  // Left servo
-Servo servor;  // Right servo
+// Créer des objets Servo pour contrôler les servomoteurs
+Servo servoDroite;
+Servo servoGauche;
 
-int l = 125;
-int r = 155;
-int compt = 0;
+// Définir les broches de connexion pour les servomoteurs
+const int pinServoDroite = 9;
+const int pinServoGauche = 10;
+
+// Définir les angles de départ pour les servomoteurs
+int angleDroite = 90;
+int angleGauche = 90;
 
 void setup() {
-  servol.attach(10);
-  servor.attach(9);
-  init(l, r);
+  // Attacher les servomoteurs aux broches correspondantes
+  servoDroite.attach(pinServoDroite);
+  servoGauche.attach(pinServoGauche);
+
+  // Placer les servomoteurs à leurs positions initiales
+  servoDroite.write(angleDroite);
+  servoGauche.write(angleGauche);
 }
 
 void loop() {
-  compt = 0;
-  while (l > 24 && r > 54) { // Utilisation de l'opérateur && pour l'ET logique
-    delay(1000);
-    l = left(l, compt);
-    r = right(r, compt);
-    init(l, r);
-    compt += 1;
-  }
-  l = 125;
-  r = 155;
-  init(l, r);
-}
+  // Déplacer les servomoteurs 11 fois
+  for (int i = 0; i < 11; i++) {
+    // Augmenter l'angle du servomoteur de droite
+    angleDroite += 5;
+    servoDroite.write(angleDroite);
 
-void init(int l, int r) {
-  servol.write(l);
-  servor.write(r);
-}
+    // Réduire l'angle du servomoteur de gauche
+    angleGauche -= 5;
+    servoGauche.write(angleGauche);
 
-int left(int l, int compt) {
-  if (compt == 0 || compt == 1) {
-    l -= 10;
+    // Attendre 5000 millisecondes entre chaque mouvement
+    delay(5000);
   }
-  if (compt == 2 || compt == 3 || compt == 4) {
-    l -= 30;
-  }
-  return l;
-}
 
-int right(int r, int compt) {
-  if (compt == 0 || compt == 1) {
-    r -= 30;
-  }
-  if (compt == 2 || compt == 3 || compt == 4) {
-    r -= 10;
-  }
-  return r;
+  // Remettre les servomoteurs à leurs positions initiales
+  angleDroite = 90;
+  angleGauche = 90;
+  servoDroite.write(angleDroite);
+  servoGauche.write(angleGauche);
+
+  // Attendre 1 seconde avant de recommencer
+  delay(1000);
 }
