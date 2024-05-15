@@ -10,5 +10,6 @@ servomoteur bleu pour lever crayon (Guillaume):
 2 servomoteurs bleus pour écrire (Tiburce):
 	Prendre position à chaque 0/1 sur la ligne vertical.
  	Servo de droite et gauche commence a 90°.
-  	Donc servo droite tend vers 0°, diminue de 5° en 5° (par exemple, 11x à faire).
-   	Donc servo gauche tend vers 180°, augmente de 5° en 5° (11x à faire aussi).
+  	Donc servo gauche tend vers 0°, diminue de 5° en 5° (par exemple, 11x à faire).
+   	Donc servo droite tend vers 180°, augmente de 5° en 5° (11x à faire aussi).
+      	Et ensuite remis à la position de départ.
